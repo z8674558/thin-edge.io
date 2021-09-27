@@ -152,11 +152,96 @@ impl ConfigSetting for MqttPortSetting {
     const KEY: &'static str = "mqtt.port";
 
     const DESCRIPTION: &'static str = concat!(
-        "Mqtt broker port, which is used by the mqtt clients to publish or subscribe. ",
-        "Example: listener 1883"
+        "Mqtt broker port, which is used by the local mqtt clients to publish or subscribe. ",
+        "Example: 1883"
     );
 
     type Value = Port;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalPortSetting;
+
+impl ConfigSetting for MqttExternalPortSetting {
+    const KEY: &'static str = "mqtt.external_port";
+
+    const DESCRIPTION: &'static str = concat!(
+        "Mqtt broker port, which is used by the external mqtt clients to publish or subscribe. ",
+        "Example: 8883"
+    );
+
+    type Value = Port;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalBindAddressSetting;
+
+impl ConfigSetting for MqttExternalBindAddressSetting {
+    const KEY: &'static str = "mqtt.external_bind_address";
+
+    const DESCRIPTION: &'static str = concat!(
+        "IP address / hostname, which the mqtt broker limits incoming connections on. ",
+        "Example: 0.0.0.0"
+    );
+
+    type Value = String;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalBindInterfaceSetting;
+
+impl ConfigSetting for MqttExternalBindInterfaceSetting {
+    const KEY: &'static str = "mqtt.external_bind_interface";
+
+    const DESCRIPTION: &'static str = concat!(
+        "Name of network interface, which the mqtt broker limits incoming connections on. ",
+        "Example: wlan0"
+    );
+
+    type Value = String;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalCAfileSetting;
+
+impl ConfigSetting for MqttExternalCAfileSetting {
+    const KEY: &'static str = "mqtt.external_cafile";
+
+    const DESCRIPTION: &'static str = concat!(
+        "Path to a file containing the PEM encoded CA certificates ",
+        "that are trusted when checking incoming client certificates. ",
+        "Example: /home/user/.tedge/c8y-trusted-root-certificates.pem"
+    );
+
+    type Value = FilePath;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalCertfileSetting;
+
+impl ConfigSetting for MqttExternalCertfileSetting {
+    const KEY: &'static str = "mqtt.external_certfile";
+
+    const DESCRIPTION: &'static str = concat!(
+        "Path to the certificate file, which is used by external MQTT listener",
+        "Example: /home/user/.tedge/tedge-certificate.crt"
+    );
+
+    type Value = FilePath;
+}
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub struct MqttExternalKeyfileSetting;
+
+impl ConfigSetting for MqttExternalKeyfileSetting {
+    const KEY: &'static str = "mqtt.external_keyfile";
+
+    const DESCRIPTION: &'static str = concat!(
+        "Path to the private key file, which is used by external MQTT listener",
+        "Example: /home/user/.tedge/tedge-private-key.pem"
+    );
+
+    type Value = FilePath;
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
